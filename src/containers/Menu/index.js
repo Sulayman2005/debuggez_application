@@ -8,13 +8,13 @@ const Menu = () => (
   <nav>
     <Logo />
     <ul>
-      <li>
+      <li title="nos services">
         <a href="#nos-services">Nos services</a>
       </li>
-      <li>
+      <li title="nos réalisations">
         <a href="#nos-realisations">Nos réalisations</a>
       </li>
-      <li>
+      <li title="notre-equipe">
         <a href="#notre-equipe">Notre équipe</a>
       </li>
     </ul>
