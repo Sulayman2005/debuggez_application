@@ -33,7 +33,7 @@ const Select = ({
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
-                  Toutes
+                  Tout
                 </li>
               )}
               {selection.map((s) => (

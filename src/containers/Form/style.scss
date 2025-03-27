@@ -1,0 +1,17 @@
+@media all and(max-width: 1000px) {
+    .row {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}
+
+@media all and(max-width: 500px) {
+    .row {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+}

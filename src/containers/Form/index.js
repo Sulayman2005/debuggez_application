@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import "./style.scss";
 import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
@@ -24,7 +25,7 @@ const Form = ({ onSuccess, onError }) => {
     [onSuccess, onError]
   );
   return (
-    <form onSubmit={sendContact}>
+    <form onSubmit={sendContact} className="contact_formulaire">
       <div className="row">
         <div className="col">
           <Field placeholder="" label="Nom" />

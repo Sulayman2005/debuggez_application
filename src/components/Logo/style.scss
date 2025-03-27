@@ -1,3 +1,11 @@
 .Logo {
+  display: flex;
   margin: 22px;
+}
+
+@media all and (max-width: 920px) {
+  .Logo {
+    display: grid;
+    place-items: center;
+  }
 }
