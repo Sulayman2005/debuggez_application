@@ -24,7 +24,7 @@ const EventList = () => {
     ) {
       return true;
     }
-    return false;
+      return false;
   });
   const changeType = (evtType) => {
     setCurrentPage(1);

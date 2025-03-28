@@ -33,7 +33,14 @@ nav {
 }
 
 @media all and (max-width: 900px) {
-  .nav {
+  .item_element {
+    min-width: 150px;
+    font-size: 15px;
+  }
+}
+
+@media all and (max-width: 750px) {
+  .item_element {
     flex-direction: column;
     padding: 20px;
 
@@ -42,7 +49,7 @@ nav {
       margin: 5px 0;
     }
 
-    ul {
+    nav {
       flex-direction: column;
       align-items: center;
       width: 100%;
