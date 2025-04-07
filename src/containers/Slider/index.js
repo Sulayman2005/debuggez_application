@@ -1,15 +1,13 @@
-
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
-
 import "./style.scss";
 
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus?.sort((evtA, evtB) =>
-    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1 // je l'ai inversé pour qu'il soit dans l'ordre décroissant
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
 
   const nextCard = () => {
@@ -25,18 +23,18 @@ const Slider = () => {
 
   useEffect(() => {
     const timer = nextCard();
-    return () => clearTimeout(timer); // Nettoyage du timeout
-  }, [index, byDateDesc]); // Dépendances ajoutées
+    return () => clearTimeout(timer);
+  }, [index, byDateDesc]);
 
   if (!byDateDesc || byDateDesc.length === 0) {
-    return null; // ou un message de chargement
+    return null;
   }
 
   return (
     <div className="SlideCardList">
       {byDateDesc.map((event, idx) => (
         <div
-          key={`slide-${event.id}`} // Clé unique
+          key={`slide-${event.id || idx}`}
           className={`SlideCard SlideCard--${
             index === idx ? "display" : "hide"
           }`}
@@ -53,15 +51,21 @@ const Slider = () => {
       ))}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
-          {byDateDesc.map((_, radioIdx) => (
-            <input
-              key={`radio-${radioIdx}`} // Clé unique
-              type="radio"
-              name="radio-button"
-              checked={index === radioIdx}
-              readOnly // Ajouté car c'est contrôlé par le state
-            />
-          ))}
+          {byDateDesc.map((event, radioIdx) => {
+            const uniqueKey = event.id 
+              ? `radio-${event.id}`
+              : `radio-fallback-${radioIdx}-${event.date}`;
+            
+            return (
+              <input
+                key={uniqueKey}
+                type="radio"
+                name="radio-button"
+                checked={index === radioIdx}
+                readOnly
+              />
+            );
+          })}
         </div>
       </div>
     </div>

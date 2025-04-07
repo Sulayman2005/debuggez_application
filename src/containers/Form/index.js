@@ -1,35 +1,34 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import "./style.scss";
 import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
-const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); })
+const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); });
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  const sendContact = useCallback(
-    async (evt) => {
-      evt.preventDefault();
-      setSending(true);
-      // We try to call mockContactApi
-      try {
-        await mockContactApi();
-        setSending(false);
-      } catch (err) {
-        setSending(false);
-        onError(err);
-      }
-    },
-    [onSuccess, onError]
-  );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      await mockContactApi();
+      onSuccess("Message envoyé avec succès !");
+    } catch (err) {
+      onError("Erreur lors de l'envoi du message");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
-    <form onSubmit={sendContact} className="contact_formulaire">
+    <form onSubmit={handleSubmit} className="contact_formulaire">
       <div className="row">
         <div className="col">
-          <Field placeholder="" label="Nom" />
-          <Field placeholder="" label="Prénom" />
+          <Field placeholder="" label="Nom" name="lastName" />
+          <Field placeholder="" label="Prénom" name="firstName" />
           <Select
             selection={["Personel", "Entreprise"]}
             onChange={() => null}
@@ -37,7 +36,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          <Field placeholder="" label="Email" />
+          <Field placeholder="" label="Email" name="email" />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
@@ -57,11 +56,12 @@ const Form = ({ onSuccess, onError }) => {
 Form.propTypes = {
   onError: PropTypes.func,
   onSuccess: PropTypes.func,
-}
+};
 
 Form.defaultProps = {
   onError: () => null,
   onSuccess: () => null,
-}
+};
 
 export default Form;
+

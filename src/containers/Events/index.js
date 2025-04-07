@@ -1,3 +1,4 @@
+// EventList.js
 import { useState } from "react";
 import EventCard from "../../components/EventCard";
 import Select from "../../components/Select";
@@ -13,10 +14,12 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // Correction: Appliquer le filtre par type si un type est sélectionné
   const filteredEvents = (
     (!type
       ? data?.events
-      : data?.events) || []
+      : data?.events.filter(event => event.type === type)) || []
   ).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
@@ -24,14 +27,17 @@ const EventList = () => {
     ) {
       return true;
     }
-      return false;
+    return false;
   });
+
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
+  
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
+  
   return (
     <>
       {error && <div>An error occured</div>}
@@ -51,6 +57,7 @@ const EventList = () => {
                   <EventCard
                     onClick={() => setIsOpened(true)}
                     imageSrc={event.cover}
+                    imageAlt={event.title}
                     title={event.title}
                     date={new Date(event.date)}
                     label={event.type}
@@ -74,3 +81,4 @@ const EventList = () => {
 };
 
 export default EventList;
+
