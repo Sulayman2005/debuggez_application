@@ -15,7 +15,7 @@ export const api = {
     return json.json();
   },
 };
-
+ 
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);

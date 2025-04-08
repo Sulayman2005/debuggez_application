@@ -13,7 +13,10 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+
+  const { data } = useData(); // Destructurez pour obtenir les données
+  const lastEvent = data?.events[data.events.length - 1]; // récupère la dernière image
+
   return <>
     <header>
       <Menu />
@@ -22,8 +25,8 @@ const Page = () => {
       <section className="SliderContainer">
         <Slider />
       </section>
-      <section className="ServicesContainer" id="nos-services">
-        <h2 className="Title">Nos services</h2>
+      <section className="ServicesContainer">
+        <h2 className="Title" id="nos-services">Nos services</h2>
         <p>Nous organisons des événements sur mesure partout dans le monde</p>
         <div className="ListContainer">
           <ServiceCard imageSrc="/images/priscilla-du-preez-Q7wGvnbuwj0-unsplash1.png">
@@ -106,7 +109,7 @@ const Page = () => {
         >
           {({ setIsOpened }) => (
             <Form
-              onSuccess={() => setIsOpened(true)}
+              onSuccess={() => { setIsOpened(true)}}
               onError={() => null}
             />
           )}
@@ -116,13 +119,14 @@ const Page = () => {
     <footer className="row">
     <div className="col presta">
       <h3>Notre dernière prestation</h3>
-      {last && (
+      {/* ajout du code lastEvent appelé en haut pour soumettre au formulaire d'EventCard */}
+      {lastEvent && ( 
         <EventCard
-          imageSrc={last.cover}
-          title={last.title}
-          date={new Date(last.date)}
+          imageSrc={lastEvent.cover}
+          title={lastEvent.title}
+          date={new Date(lastEvent.date)}
           small
-          label="boom"
+          label={lastEvent.type}
         />
       )}
     </div>
@@ -132,22 +136,22 @@ const Page = () => {
         <div>01 23 45 67 89</div>
         <div>contact@724events.com</div>
         <div>
-          <a href="https://www.twitch.tv/">
+          <a href="https://www.twitch.tv/"> {/* rajout du href pour permettre de renvoyer sur l'élément respective */}
             <Icon name="twitch" />
           </a>
-          <a href="https://fr-fr.facebook.com/">
+          <a href="https://fr-fr.facebook.com/"> {/* rajout du href pour permettre de renvoyer sur l'élément respective  */}
             <Icon name="facebook" />
           </a>
-          <a href="https://x.com/en/using-x/download-the-x-app">
+          <a href="https://x.com/en/using-x/download-the-x-app">{/* rajout du href pour permettre de renvoyer sur l'élément respective */}
             <Icon name="twitter" />
           </a>
-          <a href="https://www.youtube.com/">
+          <a href="https://www.youtube.com/">{/* rajout de l'élément href pour renvoyer sur l'élément respective */}
             <Icon name="youtube" />
           </a>
         </div>
       </div>
       <div className="col description">
-        <Logo size="large" />
+        <Logo size="large" />{/* taille aproprié pour le logo */}
         <p>
           Une agence événementielle propose des prestations de service
           spécialisées dans la conception et l&apos;organisation de divers événements

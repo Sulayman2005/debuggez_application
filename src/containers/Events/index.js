@@ -11,17 +11,18 @@ import "./style.css";
 const PER_PAGE = 9;
 
 const EventList = () => {
-  const { data, error } = useData();
+  const { data, error } = useData(true);
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   
-  // Correction: Appliquer le filtre par type si un type est sélectionné
+  // Correction: Appliquer le filtre par type si un type est sélectionné avec la création de l'élément de filteredEvents
   const filteredEvents = (
     (!type
       ? data?.events
       : data?.events.filter(event => event.type === type)) || []
   ).filter((event, index) => {
     if (
+      (!type || event.type === type) && // Ajout de la condition de type pour renseigner le "event" qui est passer en paramètre de filter
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index
     ) {

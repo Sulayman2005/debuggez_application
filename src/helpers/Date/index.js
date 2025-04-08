@@ -13,4 +13,4 @@ export const MONTHS = {
   12: "décembre",
 };
 
-export const getMonth = (date) => MONTHS[date.getMonth()];
+export const getMonth = (date) => MONTHS[date.getMonth() +1]; // ajout du +1 pour dire qu'on commence à 0 et pas à 1 pour la slide sur les mois renseigné

@@ -16,7 +16,7 @@ const Select = ({
   const [value, setValue] = useState(null);
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange(newValue);
+    onChange(newValue); // rajout de (newValue) sur onChange la fonction onChange sera appelée avec la nouvelle valeur chaque fois qu'un bouton radio est cliqué.
     setValue(newValue);
     setCollapsed(true);
   };
@@ -33,7 +33,7 @@ const Select = ({
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
-                  Tout
+                  Toutes
                 </li>
               )}
               {selection.map((s) => (
