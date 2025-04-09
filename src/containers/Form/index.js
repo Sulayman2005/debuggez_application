@@ -9,8 +9,8 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-
-  const handleSubmit = async (event) => { // fonction handleSubmit pour éviter de rafraîchir la page avec e.preventDefault et l'envoie du message lors du sucess et renvoie un message d'erreur lors du onError
+  const handleSubmit = async (event) => { // fonction handleSubmit pour éviter de rafraîchir la page avec
+  //  e.preventDefault et l'envoie du message lors du sucess et renvoie un message d'erreur lors du onError
     event.preventDefault();
     setSending(true);
     try {
@@ -40,7 +40,7 @@ const Form = ({ onSuccess, onError }) => {
           />
           <Field placeholder="Email" label="Email" name="email" required />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
-            {sending ? "En cours" : "Envoyer"}
+              {sending ? "En cours" : "Envoyer"}
           </Button>
         </div>
         <div className="col">
