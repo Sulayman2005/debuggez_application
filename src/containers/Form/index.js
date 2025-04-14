@@ -30,12 +30,14 @@ const Form = ({ onSuccess, onError }) => {
           <Field 
             placeholder="Nom" 
             label="Nom" 
-            name="lastName" 
+            name="lastName"
+            required
           />
           <Field 
             placeholder="Prenom" 
             label="Prénom" 
-            name="firstName" 
+            name="firstName"
+            required
           />
           <Select
             selection={["Personel", "Entreprise"]}
@@ -43,11 +45,13 @@ const Form = ({ onSuccess, onError }) => {
             label="Personel / Entreprise"
             type="large"
             titleEmpty
+            required
           />
           <Field 
             placeholder="Email" 
             label="Email" 
-            name="email" 
+            name="email"
+            required
           />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
               {sending ? "En cours" : "Envoyer"}
@@ -58,7 +62,8 @@ const Form = ({ onSuccess, onError }) => {
             placeholder="Entrez un message..." 
             label="Message" 
             name="message" 
-            type={FIELD_TYPES.TEXTAREA} 
+            type={FIELD_TYPES.TEXTAREA}
+            required
           /> 
         </div>
       </div>
