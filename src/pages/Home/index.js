@@ -15,7 +15,7 @@ import { useData } from "../../contexts/DataContext";
 const Page = () => {
 
   const { data } = useData(); // Destructurez pour obtenir les données
-  const lastEvent = data?.events[data.events.length - 1]; // récupère la dernière image
+  const lastEvent = data?.events[data.events.length - 1]; // récupère la dernière image dans le fichier event.json
 
   return <>
     <header>
