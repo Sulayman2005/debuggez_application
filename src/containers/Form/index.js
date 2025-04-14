@@ -24,27 +24,42 @@ const Form = ({ onSuccess, onError }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="contact_formulaire"> {/* Envoie de l'élément correspondant avec handleSubmit */}
+    <form onSubmit={handleSubmit} className="contact_formulaire"> {/* appel de la fonction pour l'envoie du formualaire */}
       <div className="row">
         <div className="col">
-          <Field placeholder="Nom" label="Nom" name="lastName" required /> {/* ajout de l'élement de required pour éviter de bloquer le rendu de la page et devoir remplir les cases pour soumettre
-          le message a envoyé lors du succée */}
-          <Field placeholder="Prenom" label="Prénom" name="firstName" required />
+          <Field 
+            placeholder="Nom" 
+            label="Nom" 
+            name="lastName" 
+          />
+          <Field 
+            placeholder="Prenom" 
+            label="Prénom" 
+            name="firstName" 
+          />
           <Select
             selection={["Personel", "Entreprise"]}
             onChange={() => null}
             label="Personel / Entreprise"
             type="large"
             titleEmpty
-            required
           />
-          <Field placeholder="Email" label="Email" name="email" required />
+          <Field 
+            placeholder="Email" 
+            label="Email" 
+            name="email" 
+          />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
               {sending ? "En cours" : "Envoyer"}
           </Button>
         </div>
         <div className="col">
-          <Field placeholder="Entrez un message..." label="Message" name="message" type={FIELD_TYPES.TEXTAREA} required /> {/* ajout du placeholder pour les textes sur les cases a compléter */}
+          <Field 
+            placeholder="Entrez un message..." 
+            label="Message" 
+            name="message" 
+            type={FIELD_TYPES.TEXTAREA} 
+          /> 
         </div>
       </div>
     </form>
