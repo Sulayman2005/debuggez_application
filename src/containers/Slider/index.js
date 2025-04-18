@@ -7,7 +7,8 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus?.sort((evtA, evtB) =>
-    new Date(evtA.date) > new Date(evtB.date) // > au lieu de < pour mettre les dates de façon décroissant sur la slide
+    new Date(evtA.date) > new Date(evtB.date) /* > au lieu de < pour mettre les dates de façon décroissant sur la slide, 
+  dans le fichier helpers j'ai mis +1 pour commencer les mois au niveau 0 et pas au niveau 1 */
   );
 
   const nextCard = () => {
@@ -28,13 +29,13 @@ const Slider = () => {
 
   if (!byDateDesc || byDateDesc.length === 0) {
     return null;
-  } // message d'erreur si jamais il y a un problème lors de l'éxécution du code
+  } // message d'erreur si jamais il y a un problème lors de l'éxécution du code on retourne null
 
   return (
     <div className="SlideCardList">
       {byDateDesc.map((event, idx) => (
         <div
-          key={`slide-${event.id || idx}`} // modification de la key
+          key={`slide-${event.id || idx}`} // modification de la key pour permettre d'avoir une clé unique à chaque fois 
           className={`SlideCard SlideCard--${
             index === idx ? "display" : "hide"
           }`}
@@ -52,13 +53,13 @@ const Slider = () => {
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
           {byDateDesc.map((event, radioIdx) => {
-            const uniqueKey = event.id // création de uniqueKey pour avoir une propre a chacun
+            const Keyunique = event.id // création de Keyunique pour avoir une clé propre a chacun pour les breakpoints 
               ? `radio-${event.id}`
               : `radio-fallback-${radioIdx}-${event.date}`;
-            
+
             return (
               <input
-                key={uniqueKey} // nom du paramètre uniqueKey appelé
+                key={Keyunique} // nom du paramètre Keyunique appelé
                 type="radio"
                 name="radio-button"
                 checked={index === radioIdx}

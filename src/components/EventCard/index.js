@@ -29,10 +29,10 @@ const EventCard = ({
 );
 
 EventCard.propTypes = {
-  imageSrc: PropTypes.string, // Suppression de l'élément ".isREquired" car on a définit imageSrc juste en bas dans defaultProps
+  imageSrc: PropTypes.string.isRequired,
   imageAlt: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
-  title: PropTypes.string, // Suppression de l'élément ".isRequired" car on a définit title juste en bas dans defaultProps
+  title: PropTypes.string.isRequired,
   small: PropTypes.bool,
   label: PropTypes.string.isRequired,
 };
@@ -40,8 +40,7 @@ EventCard.propTypes = {
 EventCard.defaultProps = {
   imageAlt: "image",
   small: false,
-  imageSrc: "insert image", // Intialisation de imageSrc pour le définir
-  title: "titre", // Initialisation de title pour le définir 
+  
 }
 
 export default EventCard;

@@ -5,11 +5,11 @@ import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
-const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); }); // création de l'élement mockContactApi pour la durée lors de l'envoie du message
+const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); }); // création de l'élement mockContactApi pour la durée lors de l'envoie du message avec un temps imparti
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  const handleSubmit = async (event) => { // fonction handleSubmit pour éviter de rafraîchir la page avec
+  const sendContact = async (event) => { // fonction sendContact pour éviter de rafraîchir la page avec
   //  e.preventDefault et l'envoie du message lors du sucess et renvoie un message d'erreur lors du onError
     event.preventDefault();
     setSending(true);
@@ -24,7 +24,7 @@ const Form = ({ onSuccess, onError }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="contact_formulaire"> {/* appel de la fonction pour l'envoie du formualaire */}
+    <form onSubmit={sendContact} className="contact_formulaire"> {/* appel de la fonction pour l'envoie du formualaire */}
       <div className="row">
         <div className="col">
           <Field 

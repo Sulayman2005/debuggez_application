@@ -14,8 +14,8 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
 
-  const { data } = useData(); // Destructurez pour obtenir les données
-  const lastEvent = data?.events[data.events.length - 1]; // récupère la dernière image dans le fichier event.json
+  const { data } = useData(); // Destructurez pour obtenir les données dans le fichiers datacontext
+  const lastEvent = data?.events[data.events.length - 1]; // récupère la dernière image dans le fichier event.json pour pouvoir ensuite récupérer tous les éléments nécessaires
 
   return <>
     <header>
@@ -119,7 +119,7 @@ const Page = () => {
     <footer className="row">
     <div className="col presta">
       <h3>Notre dernière prestation</h3>
-      {/* ajout du code lastEvent appelé en haut pour soumettre au formulaire d'EventCard */}
+      {/* on a pu récupérer toutes les données et la dernière prestation qui nous intéresse mtn avec le lastEvent on peut récupérer tous éléments qu'il nous faut */}
       {lastEvent && ( 
         <EventCard
           imageSrc={lastEvent.cover}
